@@ -1,0 +1,31 @@
+{
+  "name": "data-driven",
+  "version": "1.0.0",
+  "description": "data driven testing for mocha",
+  "keywords": [
+    "mocha",
+    "test",
+    "bdd",
+    "tdd",
+    "data",
+    "data driven"
+  ],
+  "author": "Matthew Todd <matthew.todd@fluentsoftware.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fluentsoftware/data-driven.git"
+  },
+  "main": "./index",  
+  "engines": {
+    "node": ">= 0.4.x"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {    
+  },
+  "devDependencies": {
+    "should": "*",
+    "mocha": "*"
+  }
+}
