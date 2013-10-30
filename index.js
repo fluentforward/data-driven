@@ -6,15 +6,19 @@
 
  module.exports = function(data, fn) {
     var mochaIt = it
+    var mochaDescribe = describe
     
     data.forEach(function(testData) {
+        function replaceVariables(title) {
+            for (var key in testData) {
+                title = title.replace('{'+key+'}',testData[key])
+            }
+            return title;
+        }
+
         try {
             it = function(title, f) {
                 
-                for (var key in testData) {
-                    title = title.replace('{'+key+'}',testData[key])
-                }
-
                 var testFn = f.length < 2 ? 
                     function() {
                         f(testData)
@@ -23,12 +27,18 @@
                         f(testData,done)
                     }
                     
-                mochaIt(title, testFn)
+                mochaIt(replaceVariables(title), testFn)
+            }
+
+            describe = function(title, f) {
+
+                mochaDescribe(replaceVariables(title), f)
             }
 
             fn()
         } finally {
             it = mochaIt
+            describe = mochaDescribe
         }
     })
 }
