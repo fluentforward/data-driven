@@ -19,4 +19,23 @@ describe('data-driven', function() {
 		it('should allow timeouts for async data driven testing with {key}', function(ctx, done) {			
 		})
 	})
+
+	describe('this object:', function() {
+		var sharedData = 'dummy data'
+
+		beforeEach(function() {
+			this.sharedData = sharedData
+		})
+
+		dataDriven([{}], function() {
+			it('should pass appropriate this object to sync test function', function(ctx) {
+				this.sharedData.should.equal(sharedData)
+			})
+
+			it('should pass appropriate this object to async test function', function(ctx, done) {
+				this.sharedData.should.equal(sharedData)
+				done()
+			})
+		})
+	})
 })
