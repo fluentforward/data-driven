@@ -6,29 +6,44 @@
 
  module.exports = function(data, fn) {
     var mochaIt = it
-    
+    var mochaBefore = before
+
     data.forEach(function(testData) {
         try {
             it = function(title, f) {
-                
                 for (var key in testData) {
                     title = title.replace('{'+key+'}',testData[key])
                 }
 
-                var testFn = f.length < 2 ? 
+                if (f !== undefined) {
+                    var testFn = f.length < 2 ?
+                        function() {
+                            f(testData)
+                        } :
+                        function(done) {
+                            f(testData,done)
+                        }
+		}
+
+                mochaIt(title, testFn)
+            }
+
+            before = function(f) {
+                var testFn = f.length < 2 ?
                     function() {
                         f(testData)
-                    } : 
+                    } :
                     function(done) {
                         f(testData,done)
                     }
-                    
-                mochaIt(title, testFn)
+
+                mochaBefore(testFn)
             }
 
             fn()
         } finally {
             it = mochaIt
+	    before = mochaBefore
         }
     })
 }
