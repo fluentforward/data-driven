@@ -55,5 +55,5 @@ describe('some async function', function() {
 
 ## Installation
 
-To start using data-driven, simply add a dependency to ```data-driven``` ```1.0.0``` to your package.json, and run ```npm install```.
+To start using data-driven, simply add a dependency to ```data-driven``` ```1.1.0``` to your package.json, and run ```npm install```.
 
