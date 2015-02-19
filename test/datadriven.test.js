@@ -32,7 +32,9 @@ describe('data driven extension', function() {
 				'should not affect tests outside of the dataDriven function',
 				'should run the data driven function with key1',
 				'should allow async data driven testing with key1 value value1',
-				'should allow async data driven testing with key2 value value2'
+				'should allow async data driven testing with key2 value value2',
+				'should pass appropriate this object to sync test function',
+				'should pass appropriate this object to async test function'
 				])
 
 			failed.should.eql([
