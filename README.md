@@ -57,3 +57,4 @@ describe('some async function', function() {
 
 To start using data-driven, simply add a dependency to ```data-driven``` ```1.2.0``` to your package.json, and run ```npm install```.
 
+From the creators of [uncademy.io](http://uncademy.io). Interactive courses for software developers.
