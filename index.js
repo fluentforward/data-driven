@@ -4,46 +4,48 @@
  * MIT Licensed
  */
 
- module.exports = function(data, fn) {
-    var mochaIt = it
-    var mochaBefore = before
+module.exports = function(data, fn) {
+    var mochaIt = it;
+    var mochaBefore = before;
 
     data.forEach(function(testData) {
         try {
             it = function(title, f) {
                 for (var key in testData) {
-                    title = title.replace('{'+key+'}',testData[key])
+                    if (testData.hasOwnProperty(key)) {
+                        title = title.replace('{'+key+'}', testData[key]);
+                    }
                 }
 
                 if (f !== undefined) {
                     var testFn = f.length < 2 ?
                         function() {
-                            f.call(this,testData)
+                            f.call(this, testData);
                         } :
                         function(done) {
-                            f.call(this,testData,done)
+                            f.call(this, testData, done);
                         }
-		}
+                }
 
-                mochaIt(title, testFn)
-            }
+                mochaIt(title, testFn);
+            };
 
             before = function(f) {
                 var testFn = f.length < 2 ?
                     function() {
-                        f.call(this,testData)
+                        f.call(this, testData);
                     } :
                     function(done) {
-                        f.call(this,testData,done)
-                    }
+                        f.call(this, testData, done);
+                    };
 
-                mochaBefore(testFn)
-            }
+                mochaBefore(testFn);
+            };
 
-            fn()
+            fn();
         } finally {
-            it = mochaIt
-	    before = mochaBefore
+            it = mochaIt;
+            before = mochaBefore;
         }
     })
-}
+};

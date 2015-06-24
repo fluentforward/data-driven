@@ -1,9 +1,10 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
-var Mocha = require('mocha')
-  , should = require('should')
+var Mocha = require('mocha');
+var should = require('should');
 
 describe('data driven extension', function() {
 
@@ -13,12 +14,12 @@ describe('data driven extension', function() {
 	  , failed = []
 
 		function reporter(runner) {
-			
-			runner.on('pass', function(test) {				
+
+			runner.on('pass', function(test) {
 				passed.push(test.title)
 			})
 
-			runner.on('fail', function(test) {				
+			runner.on('fail', function(test) {
 				failed.push(test.title)
 			})
 		}
@@ -26,7 +27,7 @@ describe('data driven extension', function() {
 		mocha.addFile('test/mocha/tests.js')
 		mocha.reporter(reporter)
 		mocha.timeout(100)
-		
+
 		mocha.run(function() {
 			passed.should.eql([
 				'should not affect tests outside of the dataDriven function',

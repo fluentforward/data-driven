@@ -1,5 +1,5 @@
-var dataDriven = require('../../')
-  , should = require('should')
+var dataDriven = require('../../');
+var should = require('should');
 
 describe('data-driven', function() {
 	it('should not affect tests outside of the dataDriven function', function() {
@@ -16,37 +16,37 @@ describe('data-driven', function() {
 			done()
 		})
 
-		it('should allow timeouts for async data driven testing with {key}', function(ctx, done) {			
+		it('should allow timeouts for async data driven testing with {key}', function(ctx, done) {
 		})
 	})
 
 	describe('this object:', function() {
-		var sharedData = 'dummy data'
+		var sharedData = 'dummy data';
 
 		beforeEach(function() {
-			this.sharedData = sharedData
+			this.sharedData = sharedData;
 		})
 
 		dataDriven([{}], function() {
 			before(function(ctx) {
-				this.syncData = sharedData
-			})
+				this.syncData = sharedData;
+			});
 
 			it('should pass appropriate this object to sync test function', function(ctx) {
-				this.sharedData.should.equal(sharedData)
-				this.syncData.should.equal(sharedData)
-			})
+				this.sharedData.should.equal(sharedData);
+				this.syncData.should.equal(sharedData);
+			});
 
 			before(function(ctx, done) {
-				this.asyncData = sharedData
-				done()
-			})
+				this.asyncData = sharedData;
+				done();
+			});
 
 			it('should pass appropriate this object to async test function', function(ctx, done) {
-				this.sharedData.should.equal(sharedData)
-				this.asyncData.should.equal(sharedData)
-				done()
-			})
+				this.sharedData.should.equal(sharedData);
+				this.asyncData.should.equal(sharedData);
+				done();
+			});
 		})
 	})
 })
