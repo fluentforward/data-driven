@@ -27,7 +27,7 @@ module.exports = function(data, fn) {
     var mochaIt = it;
     var mochaBefore = before;
     // Regex used to find tokens, e.g. {foo.bar}, {foo}
-    var re = /{([a-zA-Z\._]+)}/g;
+    var re = /{([0-9a-zA-Z_$\._]+)}/g;
 
     data.forEach(function(testData) {
         try {

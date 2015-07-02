@@ -20,8 +20,8 @@ describe('data-driven', function() {
 		});
 	});
 
-    dataDriven([{ foo: { bar: 'deep value', oof: { rab: 'deeper value' } }}], function() {
-        it('should handle {foo.bar} and {foo.oof.rab} lookups', function (ctx) {
+    dataDriven([{ foo: { bar: 'deep value', foo1: { bar1: 'deeper value' } }}], function() {
+        it('should handle {foo.bar} and {foo.foo1.bar1} lookups', function (ctx) {
         });
     });
 
