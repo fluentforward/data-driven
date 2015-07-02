@@ -2,30 +2,35 @@ var dataDriven = require('../../');
 var should = require('should');
 
 describe('data-driven', function() {
-	it('should not affect tests outside of the dataDriven function', function() {
+    it('should not affect tests outside of the dataDriven function', function() {
 
-	})
+    });
 
-	dataDriven([{key: 'key1',prop: 'value1'},{key: 'key2', prop: 'value2'}], function() {
+	dataDriven([{ key: 'key1', prop: 'value1' }, { key: 'key2', prop: 'value2' }], function() {
 		it('should run the data driven function with {key}', function(ctx) {
 			(ctx.key == 'key1' || ctx.key == 'key2').should.be.true
 			ctx.prop.should.equal('value1') // fail one test
-		})
+		});
 
 		it('should allow async data driven testing with {key} value {prop}', function(ctx, done) {
-			done()
-		})
+			done();
+		});
 
 		it('should allow timeouts for async data driven testing with {key}', function(ctx, done) {
-		})
-	})
+		});
+	});
+
+    dataDriven([{ foo: { bar: 'deep value', oof: { rab: 'deeper value' } }}], function() {
+        it('should handle {foo.bar} and {foo.oof.rab} lookups', function (ctx) {
+        });
+    });
 
 	describe('this object:', function() {
 		var sharedData = 'dummy data';
 
 		beforeEach(function() {
 			this.sharedData = sharedData;
-		})
+		});
 
 		dataDriven([{}], function() {
 			before(function(ctx) {
