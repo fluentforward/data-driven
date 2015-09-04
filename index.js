@@ -18,10 +18,10 @@
                 if (f !== undefined) {
                     var testFn = f.length < 2 ?
                         function() {
-                            f.call(this,testData)
+                            return f.call(this,testData)
                         } :
                         function(done) {
-                            f.call(this,testData,done)
+                            return f.call(this,testData,done)
                         }
 		}
 
@@ -31,10 +31,10 @@
             before = function(f) {
                 var testFn = f.length < 2 ?
                     function() {
-                        f.call(this,testData)
+                        return f.call(this,testData)
                     } :
                     function(done) {
-                        f.call(this,testData,done)
+                        return f.call(this,testData,done)
                     }
 
                 mochaBefore(testFn)

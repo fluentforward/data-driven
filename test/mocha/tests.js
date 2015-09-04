@@ -49,4 +49,25 @@ describe('data-driven', function() {
 			})
 		})
 	})
+
+	dataDriven([{key: 'promises'}], function() {
+
+		it('should allow returning successful {key}', function(ctx) {
+			return {
+				then: function(success, reject) { success(); }
+			};
+		})
+
+		it('should allow returning rejected {key}', function(ctx) {
+			return {
+				then: function(success, reject) { reject(); }
+			};
+		})
+
+		it('should allow timing out {key}', function(ctx) {
+			return {
+				then: function(success, reject) { }
+			};
+		})
+	})
 })
