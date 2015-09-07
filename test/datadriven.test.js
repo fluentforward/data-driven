@@ -33,6 +33,7 @@ describe('data driven extension', function() {
 				'should run the data driven function with key1',
 				'should allow async data driven testing with key1 value value1',
 				'should allow async data driven testing with key2 value value2',
+				'should allow returning successful promises',
 				'should pass appropriate this object to sync test function',
 				'should pass appropriate this object to async test function'
 				])
@@ -40,7 +41,9 @@ describe('data driven extension', function() {
 			failed.should.eql([
 				'should allow timeouts for async data driven testing with key1',
   				'should run the data driven function with key2',
-  				'should allow timeouts for async data driven testing with key2'
+  				'should allow timeouts for async data driven testing with key2',
+  				'should allow returning rejected promises',
+  				'should allow timing out promises'
 				])
 
 			done()
