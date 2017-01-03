@@ -1,7 +1,7 @@
 data-driven
 ===========
 
-data-driven is an extension to the [mocha](http://visionmedia.github.io/mocha/) JavaScript testing framework that (as the name implies) data driven testing.
+data-driven is an extension to the [mocha](http://mochajs.org/) JavaScript testing framework that (as the name implies) data driven testing.
 
 data-driven allows tests to be wrapped in a block that will run each test within that block for every item in the given data set. 
 
