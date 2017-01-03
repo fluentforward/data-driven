@@ -1,42 +1,43 @@
+'use strict';
 
 /**
  * Module dependencies.
  */
-var Mocha = require('mocha')
-  , should = require('should')
+var Mocha = require('mocha');
+var should = require('should');
 
 describe('data driven extension', function() {
 
 	it('should run data driven tests for each data item in the list', function(done) {
 		var mocha = new Mocha
 	  , passed = []
-	  , failed = []
+	  , failed = [];
 
 		function reporter(runner) {
-			
-			runner.on('pass', function(test) {				
-				passed.push(test.title)
-			})
 
-			runner.on('fail', function(test) {				
-				failed.push(test.title)
-			})
+			runner.on('pass', function(test) {
+				passed.push(test.title);
+			});
+
+			runner.on('fail', function(test) {
+				failed.push(test.title);
+			});
 		}
 
-		mocha.addFile('test/mocha/tests.js')
-		mocha.reporter(reporter)
-		mocha.timeout(100)
-		
+		mocha.addFile('test/mocha/tests.js');
+		mocha.reporter(reporter);
+		mocha.timeout(100);
 		mocha.run(function() {
 			passed.should.eql([
 				'should not affect tests outside of the dataDriven function',
 				'should run the data driven function with key1',
 				'should allow async data driven testing with key1 value value1',
 				'should allow async data driven testing with key2 value value2',
+				'should handle deep value and deeper value lookups',
 				'should allow returning successful promises',
 				'should pass appropriate this object to sync test function',
 				'should pass appropriate this object to async test function'
-				])
+				]);
 
 			failed.should.eql([
 				'should allow timeouts for async data driven testing with key1',
@@ -44,11 +45,11 @@ describe('data driven extension', function() {
   				'should allow timeouts for async data driven testing with key2',
   				'should allow returning rejected promises',
   				'should allow timing out promises'
-				])
+				]);
 
-			done()
-		})
-	})
+			done();
+		});
+	});
 
-})
+});
 
